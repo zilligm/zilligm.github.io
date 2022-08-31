@@ -1,6 +1,6 @@
 name: Guilherme Zilli
 markdown: kramdown
-theme: minimal
+
 
 permalink: /blog/:year/:month/:day/:title
 paginate: 5
