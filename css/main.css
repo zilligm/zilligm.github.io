@@ -1,5 +1,5 @@
 body {
-    margin: 60px auto;
+    margin: 20px auto;
     width: 70%;
 }
 nav ul, footer ul {
@@ -15,17 +15,21 @@ nav ul li, footer ul li {
 a {
     text-decoration: none;
     color: #999;
+    padding: 4px;
 }
 a:hover {
-    text-decoration: underline;
+    background-color: #999;
+    padding: 4px;
+    color: white;
 }
 h1 {
     font-size: 3em;
     font-family:'Helvetica', 'Arial', 'Sans-Serif';
 }
 p {
+    font-family:'Helvetica', 'Arial', 'Sans-Serif';
     font-size: 1.5em;
-    line-height: 1.4em;
+    line-height: 1.5em;
     color: #333;
 }
 footer {
@@ -40,4 +44,41 @@ ul.posts {
 
 ul.posts li {
     list-style: none;
+}
+
+/* Create three equal columns that float next to each other */
+.column {
+  float: left;
+}
+
+/* Left and right column */
+.column.side {
+  width: 25%;
+}
+
+/* Middle column */
+.column.main {
+  width: 75%;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Responsive layout - makes the three columns stack on top of each other instead of next to each other on smaller screens (600px wide or less) */
+@media screen and (max-width: 600px) {
+  .column.side, .column.main {
+    width: 100%;
+  }
+}
+
+.avatar {
+  margin: 30px auto;
+  vertical-align: middle;
+  width: 80%;
+  height: 80%;
+  border-radius: 50%;
 }
