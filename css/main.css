@@ -46,6 +46,14 @@ ul.posts li {
     list-style: none;
 }
 
+.avatar {
+  margin: 30px auto;
+  vertical-align: middle;
+  width: 80%;
+  height: 80%;
+  border-radius: 50%;
+}
+
 /* Create three equal columns that float next to each other */
 .column {
   float: left;
@@ -75,10 +83,4 @@ ul.posts li {
   }
 }
 
-.avatar {
-  margin: 30px auto;
-  vertical-align: middle;
-  width: 80%;
-  height: 80%;
-  border-radius: 50%;
-}
+
