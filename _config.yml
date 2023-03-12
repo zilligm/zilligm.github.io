@@ -7,7 +7,7 @@ paginate: 5
 paginate_path: "/blog/page:num/"
 theme: minima
 
-minima:
-  social_links:
-    - { platform: linkedin, user_url: "https://www.linkedin.com/in/guilhermezilli" }
+#minima:
+#  social_links:
+#    - { platform: linkedin, user_url: "https://www.linkedin.com/in/guilhermezilli" }
 
