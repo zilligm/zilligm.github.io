@@ -27,6 +27,9 @@ a:hover {
 a.footer {
     text-decoration: none;
 }
+a.footer:hover {
+    text-decoration: none;
+}
 
 a.cv {
     text-decoration: none;
@@ -120,8 +123,8 @@ ul.posts li {
 
 .svg-icon{
   vertical-align: middle;
-  width: 20px;
-  height: 20px;
+  width: 30px;
+  height: 30px;
 }
 
 /* Create three equal columns that float next to each other */
