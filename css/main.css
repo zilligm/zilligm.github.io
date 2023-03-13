@@ -157,9 +157,18 @@ ul.posts li {
 }
 
 
+/* PROJECT CARDS */
+.row.projects:after {
+  content: "";
+  display: table;
+  clear: both;
+  padding: 20px;
+}
+
 .column.projects {
-  float: left;
+  float: center;
   width: 25%;
+  padding: 20px;
 }
 
 h4.projects {
@@ -171,13 +180,6 @@ p.projects {
     font-family:'Helvetica', 'Arial', 'Sans-Serif';
 }
 
-/* Clear floats after the columns */
-.row.projects:after {
-  content: "";
-  display: table;
-  clear: both;
-}
-
 .card.projects {
   /* Add shadows to create the "card" effect */
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
@@ -186,7 +188,7 @@ p.projects {
 
 /* On mouse-over, add a deeper shadow */
 .card.projects:hover {
-  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.2);
 }
 
 /* Add some padding inside the card container */
@@ -194,3 +196,8 @@ p.projects {
   padding: 2px 16px;
 }
 
+@media screen and (max-width: 600px) {
+  .column.projects {
+    width: 100%;
+  }
+}
