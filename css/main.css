@@ -55,6 +55,11 @@ ul.posts li {
   border-radius: 50%;
 }
 
+.svg-icon{
+  width: 16px;
+  height: 16px;
+}
+
 /* Create three equal columns that float next to each other */
 .column {
   float: left;
