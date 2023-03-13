@@ -56,8 +56,9 @@ ul.posts li {
 }
 
 .svg-icon{
-  width: 16px;
-  height: 16px;
+  vertical-align: middle;
+  width: 20px;
+  height: 20px;
 }
 
 /* Create three equal columns that float next to each other */
