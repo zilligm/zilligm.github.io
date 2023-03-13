@@ -12,30 +12,90 @@ nav ul li, footer ul li {
     display: inline;
     margin-right: 20px;
 }
+
 a {
     text-decoration: none;
     color: #999;
     padding: 4px;
 }
+
 a:hover {
     background-color: #999;
     padding: 4px;
     color: white;
 }
+
+a.cv {
+    text-decoration: none;
+}
+a.cv:hover {
+    text-decoration: none;
+}
+
 h1 {
     font-size: 3em;
     font-family:'Helvetica', 'Arial', 'Sans-Serif';
 }
+
+h1.cv {
+    text-align: center;
+    font-size: 3em;
+    font-family:'Helvetica', 'Arial', 'Sans-Serif';
+}
+h2.cv {
+    font-size: 2em;
+    line-height: 1em;
+    font-family:'Helvetica', 'Arial', 'Sans-Serif';
+}
+h3.cv {
+    padding-top: 16px;
+    line-height: 1em;
+    font-size: 1em;
+    font-family:'Helvetica', 'Arial', 'Sans-Serif';
+}
+h4.cv {
+    line-height: 1em;
+    font-size: .8em;
+    font-family:'Helvetica', 'Arial', 'Sans-Serif';
+}
+
 p {
     font-family:'Helvetica', 'Arial', 'Sans-Serif';
     font-size: 1.5em;
     line-height: 1.5em;
     color: #333;
 }
+
+p.cv {
+    font-family:'Helvetica', 'Arial', 'Sans-Serif';
+    font-size: .8em;
+    line-height: 1em;
+    color: #333;
+}
+
+hr {
+  display: block;
+  margin-top: 0.1em;
+  margin-bottom: 0.25em;
+  margin-left: auto;
+  margin-right: auto;
+  border-style: inset;
+  border-width: 4px;
+}
+
 footer {
     display: inline;
     border-top: 1px solid #d5d5d5;
     font-size: .8em;
+}
+
+ul.cv {
+    font-size: 1em;
+    font-family:'Helvetica', 'Arial', 'Sans-Serif';
+}
+ol.cv {
+    font-size: 1em;
+    font-family:'Helvetica', 'Arial', 'Sans-Serif';
 }
 
 ul.posts { 
