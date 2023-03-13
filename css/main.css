@@ -18,11 +18,14 @@ a {
     color: #999;
     padding: 4px;
 }
-
 a:hover {
     background-color: #999;
     padding: 4px;
     color: white;
+}
+
+a.footer {
+    text-decoration: none;
 }
 
 a.cv {
