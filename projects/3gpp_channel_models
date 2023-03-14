@@ -1,0 +1,25 @@
+---
+layout: default
+title: Projects
+---
+<div class="blurb">	
+	<div class="container">
+		<h1>3GPP Channel Models</h1>
+      <h3>This is an ongoing project. More details will be posted once the library is released.</h3>
+      
+	    <p>The 3GPP Channel Models Python library is a comprehensive package that implements the 3GPP standardized radio channel models. 
+      These models are widely used in the telecommunications industry to simulate wireless communication systems and evaluate their performance.
+      </p>
+
+      <p>The library includes functions for generating channel impulse response (CIR), delay spread, path loss, and shadow fading. 
+      It supports various scenarios, including urban, suburban, rural, and indoor environments, with options to customize model parameters such as 
+      frequency, distance, and antenna height.
+      </p>
+
+      <p>The 3GPP Channel Models library is designed to be user-friendly and efficient, allowing developers to integrate it seamlessly into their 
+      simulation or testing frameworks. With this library, users can simulate wireless communication scenarios under realistic channel conditions 
+      and evaluate the performance of their systems in terms of metrics such as bit error rate, throughput, and signal-to-noise ratio.
+      </p>
+		
+	</div><!-- /.container -->
+</div><!-- /.blurb -->
