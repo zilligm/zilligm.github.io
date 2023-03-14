@@ -20,6 +20,7 @@ a {
 }
 a:hover {
     background-color: #999;
+    background-color: none;
     padding: 4px;
     color: white;
 }
