@@ -1,0 +1,99 @@
+---
+layout: default
+title: Projects: Plant Monitoring System
+---
+<div class="blurb">	
+	<div class="container">
+	<h1>Plant Monitoring System</h1>
+
+		<div>	
+			<img src="/images/plant_monitoring_ha.png" alt=" " style="width:400px;padding: 15px;">
+			<p> 
+				In the era of smart homes and automation, nurturing your plants has become a tech-savvy endeavor. 
+				In this project, I explore a captivating maker project — a Plant Monitoring System that not only let me keep a vigilant eye on my plants' well-being 
+				but also incorporates a DHT22 temperature and humidity sensor.
+				This intelligent system, built around an ESP32 S2 mini, capacitive soil moisture sensors, and the DHT22 sensor, 
+				seamlessly integrates with Home Assistant for an enhanced plant care experience.
+			</p>
+		</div>
+
+		<div>
+			<h2>Components</h2>
+
+			<h3>Main Board - ESP32 S2 Mini:</h3>
+			<img src="/images/main_board.png" alt=" " height="300">
+			<ul>
+				<li>The central unit, responsible for powering and collecting measurements.</li>
+				<li>Programmed with ESPHome in Home Assistant for seamless integration and customization.</li>
+			</ul>
+
+			<h3>Soil Moisture Sensors:</h3>
+			<img src="/images/soil_moisture_sensor.png" alt=" " height="300">
+			<ul>
+				<li>Four widely available capacitive sensors offer precise soil moisture data.</li>
+				<li>Essential for monitoring the hydration levels of your plants.</li>
+			</ul>
+
+			<h3>DHT22 Temperature and Humidity Sensor:</h3>
+			<ul>
+				<li>Provides additional environmental data, enhancing your understanding of the plant's surroundings.</li>
+				<li>Offers insights into temperature and humidity conditions crucial for plant health.</li>
+			</ul>
+			
+			<h3>3D-Printed Cases:</h3>
+			<ul>
+				<li>The 3D-printed cases not only protect the components but also add a touch of aesthetics to your plant monitoring system.</li>
+				<li>3D models were designed by Bruno and are available on Printables: <a href="https://www.printables.com/model/711483-capacitive-soil-moisture-sensor-case">Sensor Case</a> 
+					<a href="https://www.printables.com/model/711607-case-for-30x70-mm-board-1-dht22-1-isp32-s2-mini-4-">Main Board</a></li>
+			</ul>
+
+			<h2>Project Integration</h2>
+			<p> The seamless integration of this Plant Monitoring System with Home Assistant opens up a world of possibilities for plant care automation. 
+				The collected data, including soil moisture, temperature, and humidity, is uploaded to the Home Assistant server via WiFi, 
+				allowing you to monitor and manage your plants remotely.
+			</p>
+
+
+			<h2>Key Features</h2>
+			<ul>
+				<li>Remote Monitoring:
+					<ul>
+						<li>Access real-time soil moisture, temperature, and humidity data from anywhere using Home Assistant.</li>
+						<li>Stay connected to your plants even when you're away.</li>
+					</ul>
+				</li>
+
+				<li>Automation:
+					<ul>
+						<li>Leverage Home Assistant's automation capabilities to create custom routines based on multiple environmental factors.</li>
+						<li>Set up watering schedules or receive notifications when your plants need attention.</li>
+					</ul>
+				</li>
+
+				<li>User-Friendly Interface:
+					<ul>
+						<li>The intuitive Home Assistant interface makes it easy to visualize and interpret the collected data.</li>
+						<li>Effortlessly manage multiple plants with a user-friendly dashboard.</li>
+					</ul>
+				</li>
+			</ul>
+
+			<h2>Project Resources</h2>
+			<p> For those looking to replicate or further customize this project, the following resources are available:</p>
+			<ol>
+				<li>3D-Printed Cases:
+					<ul>
+						<li><a href="https://www.printables.com/model/711607-case-for-30x70-mm-board-1-dht22-1-isp32-s2-mini-4-">Main Board</a> </li>
+						<li><a href="https://www.printables.com/model/711483-capacitive-soil-moisture-sensor-case">Sensor Case</a> </li>						
+					</ul>
+				</li>
+
+				<li>ESPHome Code:
+					<ul>
+						<li>I'll make it available soon.</li>
+					</ul>
+				</li>
+			</ol>
+		</div>
+	</div><!-- /.container -->
+</div><!-- /.blurb -->
