@@ -1,0 +1,17 @@
+---
+layout: default
+title: Guilherme's Blog
+---
+<div class="blog-page">
+	<h1 class="blog-page-title">{{ page.title }}</h1>
+	{% assign blog_posts = site.posts | sort: "date" | reverse %}
+
+	<ul class="blog-list" aria-label="Blog posts">
+		{% for post in blog_posts %}
+			<li class="blog-list-item">
+				<time class="blog-list-date" datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%b %-d, %Y" }}</time>
+				<a class="blog-list-title" href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
+			</li>
+		{% endfor %}
+	</ul>
+</div>

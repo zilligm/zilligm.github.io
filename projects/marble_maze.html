@@ -1,0 +1,80 @@
+---
+layout: default
+title: "Projects: RL-Controlled Marble Maze"
+---
+<div class="blurb project-page">
+	<div class="container">
+		<h1>Teaching an AI to Solve a Physical Marble Maze</h1>
+		<p class="project-meta">A real-world reinforcement learning system combining 3D printing, embedded control, computer vision, and continuous-action policy learning.</p>
+
+		<img class="project-hero" src="/assets/images/rl-maze/maze-gif.gif" alt="RL-controlled marble maze running in real time" style="width: min(100%, 380px);">
+
+		<h2>Overview</h2>
+		<p>
+			This project started with a simple question: can reinforcement learning solve a physical marble maze, not just a simulator? I built a two-axis motorized maze and trained an agent to drive a steel ball from start to goal using camera feedback.
+		</p>
+		<p>
+			After several hardware and software iterations, the system learned robust behavior and can solve the maze in as few as eight actions in best runs, while recovering from occasional bad moves and sensing noise.
+		</p>
+
+		<h2>System Setup</h2>
+		<img src="/assets/images/rl-maze/rl_system_drawing.png" alt="Illustration of the RL marble maze system architecture">
+		<ul>
+			<li>Two 28BYJ-48 stepper motors with ULN2003 drivers control tilt on X and Y axes.</li>
+			<li>An Arduino Uno runs motion control, homing logic, and host serial communication.</li>
+			<li>A top-mounted USB camera tracks the maze and marble states in real time.</li>
+			<li>Limit switches provide repeatable startup calibration and zero reference.</li>
+		</ul>
+
+		<h2>Perception and Environment</h2>
+		<p>
+			A YOLO-based vision pipeline detects maze corners and ball position. Corner detections are used to compute a perspective transform, producing a normalized top-down coordinate system for control and reward evaluation.
+		</p>
+		<p>
+			The environment follows a Gym-like interaction cycle: <strong>reset</strong>, <strong>step(action)</strong>, observation, and reward. Each action maps to motor targets, waits for motion to settle, then reads the next ball state from vision.
+		</p>
+
+		<h3>Reward Design</h3>
+		<img src="/assets/images/rl-maze/potential_map.png" alt="Potential map used for reward shaping in the maze">
+		<p>
+			Reward shaping uses a precomputed map over the maze geometry and the current implementation uses <strong>1 - potential</strong>. As a result, rewards are close to <strong>-1</strong> near the maze start and approach <strong>0</strong> near the goal region, with an additional <strong>+100</strong> completion bonus when the marble reaches the target.
+		</p>
+
+		<h2>Learning Framework</h2>
+		<p>
+			The controller is based on DDPG for continuous control. The actor outputs two continuous tilt commands, and the critic evaluates state-action quality. Training supports both online interaction with hardware and offline replay-based updates from logged trajectories.
+		</p>
+		<p>
+			I also added Optuna-based hyperparameter search to tune learning rates, noise settings, and discounting, which significantly reduced manual trial-and-error.
+		</p>
+
+		<h3>Training Behavior</h3>
+		<img src="/assets/images/rl-maze/model_losses.png" alt="Actor and critic loss curves during offline training">
+		<p>
+			Typical offline runs show unstable early learning followed by convergence to smoother critic behavior and a more stable policy. In practice, policy quality is evaluated on real maze success rate and step efficiency, not loss values alone.
+		</p>
+
+		<h2>Key Challenges and Lessons</h2>
+		<ul>
+			<li>Real-world latency and settling time dominate control quality more than algorithm complexity.</li>
+			<li>Reliable serial communication and robust state logging were essential for reproducible training.</li>
+			<li>Vision calibration quality directly impacted policy stability and sample efficiency.</li>
+			<li>Data infrastructure (MariaDB-backed replay data) became critical as experiment volume grew.</li>
+		</ul>
+
+		<h2>Next Steps</h2>
+		<ul>
+			<li>Compare DDPG against SAC and TD3 under the same hardware constraints.</li>
+			<li>Improve actuation smoothness with faster motors and refined low-level control.</li>
+			<li>Add richer live monitoring for training diagnostics and policy evaluation.</li>
+		</ul>
+
+		<h2>Resources</h2>
+		<ul>
+			<li><a href="https://github.com/zilligm/marble-maze-rl" target="_blank" rel="noopener noreferrer">Project repository on GitHub</a></li>
+			<li><a href="https://www.printables.com/model/741739-snap-together-marble-maze-with-step-motor" target="_blank" rel="noopener noreferrer">3D maze model on Printables</a></li>
+		</ul>
+	</div>
+</div>
+
+
