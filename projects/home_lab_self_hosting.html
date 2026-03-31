@@ -1,0 +1,86 @@
+---
+layout: default
+title: "Projects: Home Lab and Self-Hosting Setup"
+---
+<div class="blurb project-page">
+	<div class="container">
+		<h1>Home Lab and Self-Hosting Setup</h1>
+		<p class="project-meta">A personal self-hosting environment I use to learn networking and container operations while running practical services at home.</p>
+
+		<h2>Overview</h2>
+		<p>
+			I started this home lab as a practical way to learn outside of my day-to-day work. My main goals are to improve my networking fundamentals, get more hands-on experience with containerized services, and build better operational habits around backups, monitoring, and maintenance. I also wanted a place where I can test ideas in a real environment instead of only reading about them.
+		</p>
+		<p>
+			At the same time, self-hosting gives me more control over my own data. I still use cloud services when they make sense, but for personal workflows I prefer to run tools that I can configure, back up, and migrate myself. This setup is still evolving, but it already helps me stay more organized at home while giving me steady exposure to Linux administration, DNS, storage planning, and service reliability.
+		</p>
+
+		<h2>Setup (High Level)</h2>
+		<p>
+			I currently split the setup across two machines. On my NAS, I run services that are more important or sensitive for me, especially Paperless and GitLab. I also have a mini PC running Proxmox with two VMs: one dedicated to Home Assistant, and one Debian VM where I deploy most of the other services through Portainer.
+		</p>
+
+		<h2>Services I Currently Host</h2>
+
+		<h3><a class="service-link" href="https://about.gitlab.com/" target="_blank" rel="noopener noreferrer">GitLab</a></h3>
+		<p>
+			I use GitLab mainly to host personal repositories and keep my side projects separate from work-related systems. The main value for me is having a private, self-managed place for code and collaboration flows that I can control directly.
+		</p>
+		<p>
+			The part I use the most, beyond source hosting, is CI/CD. I implemented a few pipelines to automatically deploy some MCP servers I was developing whenever I push changes to the repository. It is still a simple setup, but it has been very useful to reduce repetitive manual deployment steps.
+		</p>
+
+		<h3><a class="service-link" href="https://www.home-assistant.io/" target="_blank" rel="noopener noreferrer">Home Assistant</a></h3>
+		<p>
+			Home Assistant is the core of my smart home setup. I use it to centralize devices that would otherwise live in separate vendor apps, and to build automations that match how I actually use my home day to day. That includes simple quality-of-life flows, but also visibility into states and logs when something does not behave as expected.
+		</p>
+		<p>
+			It is by far one of the most useful services I run. I currently have many automations active in the house, including presence-activated lights, automated bathroom fans, and camera-based notifications, plus several smaller routines. Besides convenience, it gives me one reliable control plane for home behavior and a practical environment to learn automation logic and troubleshooting.
+		</p>
+
+		<h3><a class="service-link" href="https://pi-hole.net/" target="_blank" rel="noopener noreferrer">Pi-hole</a></h3>
+		<p>
+			Pi-hole is my network-wide DNS filter. I mainly use it to reduce ads and tracking domains across devices that are harder to manage individually, such as TVs and mobile apps. It gives me a single control point for filtering and domain overrides without having to install blockers everywhere.
+		</p>
+
+		<h3><a class="service-link" href="https://frigate.video/" target="_blank" rel="noopener noreferrer">Frigate</a></h3>
+		<p>
+			I use Frigate as my local video surveillance layer, mostly to move from generic motion alerts to object-aware notifications that are more actionable. It integrates well with Home Assistant, which helps me keep monitoring and alerting in the same workflow while keeping recordings and event processing under my control.
+		</p>
+
+		<h3><a class="service-link" href="https://grocy.info/" target="_blank" rel="noopener noreferrer">Grocy</a></h3>
+		<p>
+			Grocy helps me track household inventory and recurring purchases, especially pantry and consumable items that are easy to forget. I do not try to track everything perfectly, but having a lightweight system has made shopping more predictable and reduced duplicate purchases.
+		</p>
+
+		<h3><a class="service-link" href="https://mealie.io/" target="_blank" rel="noopener noreferrer">Mealie</a></h3>
+		<p>
+			Mealie is my recipe and meal-planning tool, and I use it to keep recipes in one searchable place instead of relying on scattered browser bookmarks. It helps with weekly planning and shopping lists, and in practice it removes a lot of small friction from day-to-day cooking decisions.
+		</p>
+
+		<h3><a class="service-link" href="https://www.openproject.org/" target="_blank" rel="noopener noreferrer">OpenProject</a></h3>
+		<p>
+			I use OpenProject for personal planning when a side project grows beyond simple notes. It helps me keep tasks and priorities visible over longer timelines, and it is useful to separate ideas that are interesting from work that I am actively committing to.
+		</p>
+
+		<h3><a class="service-link" href="https://github.com/zadam/trilium" target="_blank" rel="noopener noreferrer">Trilium Notes</a></h3>
+		<p>
+			I use Trilium Notes as my main place for infrastructure notes and home lab documentation. It helps me keep setup decisions, troubleshooting steps, and service-specific details organized, so I can maintain consistency over time and avoid depending on memory for operational tasks.
+		</p>
+
+		<h3><a class="service-link" href="https://calibre-ebook.com/" target="_blank" rel="noopener noreferrer">Calibre</a></h3>
+		<p>
+			I host Calibre to manage my personal digital library and metadata in one place. The main benefit is long-term organization: search, tagging, and metadata cleanup are much easier than managing files manually across folders and devices.
+		</p>
+
+		<h3><a class="service-link" href="https://docs.paperless-ngx.com/" target="_blank" rel="noopener noreferrer">Paperless</a></h3>
+		<p>
+			Paperless is where I store and index personal documents such as bills, receipts, manuals, and contracts. OCR and tagging make retrieval much easier than folder-only storage, and it has become one of the most practical services in my setup because important records stay under my control with backups defined by me.
+		</p>
+
+		<h2>Current Focus and Next Steps</h2>
+		<p>
+			The stack is stable enough for daily use, but I still treat it as an ongoing learning project. My next improvements are focused on stronger backup validation, cleaner network segmentation, and better observability so I can detect issues earlier. The goal is not to build a perfect infrastructure, but to keep improving it in a way that stays useful for real life.
+		</p>
+	</div>
+</div>

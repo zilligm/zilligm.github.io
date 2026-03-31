@@ -1,0 +1,87 @@
+---
+layout: default
+title: "Projects: Real-Time 3D Human Pose Reconstruction"
+---
+<div class="blurb project-page">
+	<div class="container">
+		<h1>Real-Time 3D Human Pose Reconstruction from Multi-Camera Views</h1>
+		<p class="project-meta">A real-time multi-camera vision system that reconstructs 3D human body and hand keypoints from YOLO pose detections.</p>
+
+		<h2>Overview</h2>
+		<p>
+			This project reconstructs 3D human pose from live video streams captured by multiple cameras. For each frame, a YOLO pose model detects 2D keypoints in each view, and a triangulation step estimates the corresponding 3D joint coordinates in a shared world reference frame. The output is rendered as an interactive 3D skeleton in real time.
+		</p>
+		<p>
+			I built the full pipeline in Python, including camera geometry and triangulation logic, to keep direct control over each stage of the system. The implementation is designed to be flexible enough to switch between body and hand tracking, and to scale from two cameras to larger multi-camera setups.
+		</p>
+
+		<h2>Problem Context</h2>
+		<p>
+			A single camera view does not directly provide depth, because projecting a 3D scene onto a 2D image plane loses distance information. Multi-view geometry addresses that limitation. When the same keypoint is observed from two or more camera viewpoints with known poses, it becomes possible to estimate the original 3D location by triangulation.
+		</p>
+		<p>
+			This project applies that principle to human pose keypoints. Instead of reconstructing dense 3D geometry, it focuses on structured landmarks, which makes real-time operation practical while still capturing useful motion information.
+		</p>
+
+		<h2>Pipeline</h2>
+		<h3>1. Multi-Camera Capture</h3>
+		<p>
+			Each camera is defined in a shared coordinate system by position and orientation. In my setup, I used two Logitech BRIO 100 webcams placed on a desk and pointed toward the subject from different angles. Capture runs in separate threads, so frame acquisition from one camera does not block the others.
+		</p>
+
+		<h3>2. 2D Pose Estimation</h3>
+		<p>
+			Each incoming frame is processed by a YOLOv11 pose model. The system can run in two modes: body pose with 17 COCO keypoints, or hand pose with 21 landmarks. The detector outputs normalized 2D coordinates and confidence values for the detected keypoints.
+		</p>
+
+		<h3>3. 3D Triangulation</h3>
+		<p>
+			The reconstruction stage uses a pinhole camera model and homogeneous transforms. For each keypoint, the 2D observations from all available camera views are converted into a linear least-squares system. Solving that system gives the 3D point that best fits all observations.
+		</p>
+		<p>
+			The method is straightforward to scale: adding another camera simply adds additional constraints to the same solve step. In practice, this also helps robustness against noisy 2D detections.
+		</p>
+
+		<h3>4. Real-Time 3D Visualization</h3>
+		<p>
+			The reconstructed keypoints are displayed in a live Matplotlib 3D plot. Joint connections are drawn to form a readable skeleton, and body regions are color-coded to improve visual interpretation during motion.
+		</p>
+
+		<h2>Implementation Notes</h2>
+		<p>
+			The current implementation uses manually measured camera placement rather than a full checkerboard calibration workflow. This keeps setup simple and fast for experimentation, while still providing a workable geometric model for live reconstruction. The codebase also includes two runtime paths: a desktop-oriented version with interactive Matplotlib rendering, and a Jetson-targeted version where OpenCV handles visualization in a headless-friendly workflow.
+		</p>
+
+		<h2>Results</h2>
+		<p>
+			With two cameras, the system produces a stable live 3D skeleton for both body and hand tracking. End-to-end throughput is around 10 FPS in my tests, with most runtime spent on sequential YOLO inference. The triangulation solve itself is comparatively lightweight.
+		</p>
+
+		<h2>Current Limitations</h2>
+		<p>
+			The current version assumes cross-view correspondence implicitly by using the first detected person in each view. This works in single-subject scenes, but it is not sufficient for reliable multi-person reconstruction. In addition, the independent camera threads are not hardware-synchronized, so fast motions can show small temporal inconsistencies across views.
+		</p>
+		<p>
+			Accuracy also depends on camera baseline and placement quality. In practice, wider camera spacing improves depth conditioning, and small extrinsic measurement errors can be visible in the resulting 3D estimate.
+		</p>
+
+		<h2>Technology Stack</h2>
+		<ul>
+			<li>Python 3.11+</li>
+			<li>Ultralytics YOLOv11 for 2D pose estimation</li>
+			<li>OpenCV for camera I/O and Jetson rendering path</li>
+			<li>NumPy for transforms and least-squares solving</li>
+			<li>Matplotlib for interactive 3D visualization</li>
+		</ul>
+
+		<h2>Future Work</h2>
+		<p>
+			The next steps are to add cross-view identity association for multi-person scenes, improve calibration with marker-based workflows, and reduce inference bottlenecks by batching camera inputs on GPU. I also plan to export reconstructed trajectories to standard motion formats for downstream analysis.
+		</p>
+
+		<h2>Resources</h2>
+		<ul>
+			<li><a href="https://github.com/zilligm/3D-Camera-Reconstruction" target="_blank" rel="noopener noreferrer">Project repository on GitHub</a></li>
+		</ul>
+	</div>
+</div>

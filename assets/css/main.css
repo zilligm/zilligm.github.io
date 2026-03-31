@@ -357,6 +357,27 @@ ol.cv {
   margin: 22px 0 10px;
 }
 
+.project-page .service-link {
+  display: inline;
+  color: #1a1a1a;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  cursor: pointer;
+  position: relative;
+  z-index: 1;
+}
+
+.project-page .service-link:hover {
+  background: transparent;
+  color: #0a66c2;
+}
+
+.project-page .service-link:focus,
+.project-page .service-link:focus-visible {
+  outline: 2px solid #0a66c2;
+  outline-offset: 2px;
+}
+
 .project-page p {
   margin: 12px 0;
 }
