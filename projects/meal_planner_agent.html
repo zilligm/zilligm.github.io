@@ -1,0 +1,70 @@
+---
+layout: default
+title: "Projects: Meal Planning AI Agent"
+---
+<div class="blurb project-page">
+	<div class="container">
+		<h1>Meal Planning AI Agent</h1>
+		<p class="project-meta">An AI agent that connects self-hosted Grocy and Mealie through MCP servers, powered by a local LLM, to plan meals based on what's already in the pantry.</p>
+
+		<img class="project-hero" src="/assets/images/meal_planner_agent/meal_planner_agent_diagram.png" alt="Meal planner agent architecture diagram" style="width: min(100%, 380px);">
+
+		<h2>Overview</h2>
+		<p>
+			I self-host <a href="https://grocy.info/" target="_blank" rel="noopener noreferrer">Grocy</a> for pantry tracking and <a href="https://mealie.io/" target="_blank" rel="noopener noreferrer">Mealie</a> for recipe management. This project bridges both through the <a href="https://modelcontextprotocol.io/" target="_blank" rel="noopener noreferrer">Model Context Protocol (MCP)</a>, letting a single AI agent answer questions like <em>"What can I cook this week with what I already have?"</em>
+		</p>
+		<p>
+			The entire system runs on my local network — no cloud APIs — using a local LLM served by <a href="https://ollama.com/" target="_blank" rel="noopener noreferrer">Ollama</a>.
+		</p>
+
+		<h2>Architecture</h2>
+		<ul>
+			<li><strong>Grocy MCP Server</strong> (port 8300) — wraps Grocy's REST API, exposes pantry stock queries with parent-product aggregation.</li>
+			<li><strong>Mealie MCP Server</strong> (port 8200) — wraps Mealie's REST API, exposes recipe lookup, meal plan writing, and shopping list management.</li>
+			<li><strong>LangGraph Agent</strong> — connects to both MCP servers via <code>langchain-mcp-adapters</code>, discovers tools at startup, and uses a ReAct loop for reasoning.</li>
+			<li><strong>Ollama</strong> — serves local LLMs (Gemma 3, Gemma 4, Qwen) on the home network.</li>
+		</ul>
+		<p>
+			Both MCP servers are built with <a href="https://github.com/jlowin/fastmcp" target="_blank" rel="noopener noreferrer">FastMCP</a> using the <code>streamable-http</code> transport, returning typed Pydantic models. They run as Docker containers on a Raspberry Pi.
+		</p>
+
+		<h2>Key Design Decisions</h2>
+
+		<h3>Parent-Product Aggregation</h3>
+		<p>
+			Grocy tracks products at the barcode level, so three brands of olive oil appear as three entries. The Grocy MCP server aggregates stock at the parent-product level, merging quantities across children before returning data. The agent only sees "Olive Oil: 2 bottles."
+		</p>
+
+		<h3>Tool Design for Small Models</h3>
+		<p>
+			Local LLMs (7–12B parameters) struggle with large tool catalogs. I consolidated multiple narrow tools into fewer, broader ones — for example, a single <code>list_products</code> tool with a <code>filter</code> parameter instead of separate tools per filter. Clear docstrings guide the model's filter selection.
+		</p>
+
+		<h3>Prompt-Based Behavioral Tuning</h3>
+		<p>
+			The system prompt encodes rules for tool-result trust, fuzzy ingredient matching, filter selection logic, and anti-hallucination guardrails. Small models need these rules spelled out explicitly.
+		</p>
+
+		<h2>Deployment</h2>
+		<p>
+			MCP servers are containerized with <code>python:3.13-slim</code> and <code>uv</code>. A GitLab CI pipeline builds Docker images and pushes them to a private registry. <a href="https://containrrr.dev/watchtower/" target="_blank" rel="noopener noreferrer">Watchtower</a> on the Raspberry Pi polls for updates and rolls out new versions automatically.
+		</p>
+
+		<h2>Next Steps</h2>
+		<ul>
+			<li>More Grocy tools — search by product name, manage open stock, health-check endpoints.</li>
+			<li>Composite operations — <code>check_recipe_feasibility</code> and <code>generate_shopping_list_for_mealplan</code> as server-side tools to reduce agent round-trips.</li>
+			<li>A verified-facts layer gating claims through deterministic checks before the LLM surfaces them.</li>
+		</ul>
+
+		<h2>Resources</h2>
+		<ul>
+			<li><a href="https://grocy.info/" target="_blank" rel="noopener noreferrer">Grocy</a></li>
+			<li><a href="https://mealie.io/" target="_blank" rel="noopener noreferrer">Mealie</a></li>
+			<li><a href="https://github.com/jlowin/fastmcp" target="_blank" rel="noopener noreferrer">FastMCP</a></li>
+			<li><a href="https://github.com/langchain-ai/langgraph" target="_blank" rel="noopener noreferrer">LangGraph</a></li>
+			<li><a href="https://modelcontextprotocol.io/" target="_blank" rel="noopener noreferrer">Model Context Protocol</a></li>
+			<li><a href="https://ollama.com/" target="_blank" rel="noopener noreferrer">Ollama</a></li>
+		</ul>
+	</div>
+</div>
